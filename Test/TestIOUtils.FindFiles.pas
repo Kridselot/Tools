@@ -1,4 +1,4 @@
-unit TestIOUtils.FindFiles;
+﻿unit TestIOUtils.FindFiles;
 {
 
   Delphi DUnit Test Case
@@ -12,7 +12,7 @@ unit TestIOUtils.FindFiles;
 interface
 
 uses
-  TestFramework, IOUtils.FindFiles, System.SysUtils, System.Generics.Collections
+  TestFramework, System.IOUtils, System.IOUtils.FindFiles, System.SysUtils, System.Generics.Collections
   ;
 
 type
@@ -43,11 +43,16 @@ end;
 
 procedure TestTFileFinder.TestSearch;
 var
-  aQueue: TQueue<TSearchRec>;
+  Queue: TThreadedQueue<TSearchRec>;
 begin
-  // TODO: Setup method call parameters
-  FFileFinder.Search(aQueue);
-  // TODO: Validate method results
+  Queue := TThreadedQueue<TSearchRec>.Create;
+  try
+    FFileFinder.Path := TPath.GetFullPath(TPath.GetDirectoryName(ParamStr(0)) + '\..\..\..');
+    FFileFinder.Extension := '*';
+    FFileFinder.Search(Queue);
+  finally
+    Queue.Free;
+  end;
 end;
 
 initialization

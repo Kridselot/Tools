@@ -67,3 +67,6 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+Test/ToolsTest.res
+Test/Win32/Debug/
+Test/Win64/Debug/

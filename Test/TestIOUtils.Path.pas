@@ -1,4 +1,4 @@
-unit TestIOUtils.Path;
+﻿unit TestIOUtils.Path;
 {
 
   Delphi DUnit Test Case
@@ -13,7 +13,7 @@ interface
 
 uses
   TestFramework, System.SysUtils, System.Generics.Collections
-  , System.IOUtils, Ioutils.Path
+  , System.IOUtils, System.IOUtils.Path
   ;
 
 type
@@ -23,23 +23,11 @@ type
   public
   published
     procedure FileName;
-    procedure CorrectFileName;
     procedure FilePath;
-    procedure CorrectPathName;
   end;
 
 implementation
 
-
-procedure TestTPathHelper.CorrectFileName;
-begin
-
-end;
-
-procedure TestTPathHelper.CorrectPathName;
-begin
-
-end;
 
 procedure TestTPathHelper.FileName;
 begin
@@ -47,11 +35,13 @@ begin
   CheckEqualsString('ABBA', TPath.MakeValidFileName('ABBA'));
   CheckEqualsString('abba', TPath.MakeValidFileName('abba'));
   CheckEqualsString('A.B_B#A-A', TPath.MakeValidFileName('A.B_B#A-A'));
+  CheckEqualsString('A.B_B#A-A', TPath.MakeValidFileName('A.?B_B*#A-A'));
+  CheckEqualsString('ABB/A:ABBA\AB', TPath.MakeValidPath('A"B*B/A:A<B>B?A\A|B'));
 end;
 
 procedure TestTPathHelper.FilePath;
 begin
-  CheckEqualsString('ABBAABBAAB', TPath.MakeValidFileName('A"B*B/A:A<B>B?A\A|B'));
+  CheckEqualsString('AB*B/A:ABB?A\AB', TPath.MakeValidPath('A"B*B/A:A<B>B?A\A|B'));
 end;
 
 initialization

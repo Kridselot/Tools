@@ -1,4 +1,4 @@
-program ToolsTest;
+﻿program ToolsTest;
 {
 
   Delphi DUnit Test Project
@@ -16,8 +16,8 @@ program ToolsTest;
 
 uses
   DUnitTestRunner,
-  IOUtils.Path in '..\IOUtils.Path.pas',
-  IOUtils.FindFiles in '..\IOUtils.FindFiles.pas',
+  System.IOUtils.Path in '..\System.IOUtils.Path.pas',
+  System.IOUtils.FindFiles in '..\System.IOUtils.FindFiles.pas',
   TestIOUtils.FindFiles in 'TestIOUtils.FindFiles.pas',
   TestIOUtils.Path in 'TestIOUtils.Path.pas';
 
